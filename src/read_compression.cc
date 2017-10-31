@@ -32,7 +32,9 @@ uint32_t compress_read(Arithmetic_stream as, read_models models, read_line samLi
         maskedReadVal = (uint8_t)(models->read_length & mask)>>(k*8);
         compress_uint8t(as, models->rlength[k], maskedReadVal);
     }
-    
+   
+// printf("Read length is: %d\n", models->read_length);
+ 
     // Compress sam line
     PosDiff = compress_pos(as, models->pos, models->pos_alpha, samLine->pos, chr_change);
     tempF = compress_flag(as, models->flag, samLine->invFlag);

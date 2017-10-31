@@ -26,14 +26,14 @@ void reset_QV_block(qv_block qvb, uint8_t direction){
 uint32_t get_read_length(FILE *f){
     
     int ch, header_bytes = 0;
-    char buffer[2048]; // 2 KB buffer
+    char buffer[10000]; // 2 KB buffer
     
     // We use this opportunity to remove the headers
     // getc coge caracter, fgets coge 2048 o hasta salto linea.
     // con esto simplemente calculamos los bytes de header (empiezan con @),
     // el contenido de buffer nos da igual (se override cada vez).
     while ((ch = getc(f)) == '@') {
-        fgets(buffer, 2048, f);
+        fgets(buffer, 10000, f);
         header_bytes += strlen(buffer) + 1; // +1 to account for the @
     }
     

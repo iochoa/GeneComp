@@ -115,8 +115,8 @@ uint8_t create_most_common_list(sam_block sb) {
 
     long currentPosition;
 
-    float entropy = 0.0;
-    float prob;
+    //float entropy = 0.0;
+    //float prob;
 
     char buffer[1024];
     char *ptr;
@@ -248,7 +248,7 @@ uint32_t reconstructCigar(uint32_t* Dels, ins* Insers, uint32_t numDels, uint32_
     cigarIndels cid[MAX_READ_LENGTH];
     //int totalReadLength = 100; //This should be variable
 
-    int c=0,itI=0,itD=0,ci=0,cd=0,k=0,posD=0,posI=0,i=0;
+    int c=0,itI=0,itD=0,k=0,posD=0,posI=0,i=0;
     int actM = 0;
 
     //array w. pos,type,num for dels and ins, then sort array by pos.

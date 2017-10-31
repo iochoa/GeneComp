@@ -130,12 +130,14 @@ int compress_line(Arithmetic_stream as, sam_block samBlock, FILE *funmapped, uin
     compress_tlen(as, samBlock->tlen->models, *samBlock->tlen->tlen);
 
     compress_pnext_raw(as, samBlock->pnext->models,  samBlock->reads->lines->pos, *samBlock->pnext->pnext);
+    
     compress_aux(as, samBlock->aux->models, samBlock->aux->aux_str, samBlock->aux->aux_cnt, samBlock->aux);
 
     if (lossiness == LOSSY)
         QVs_compress(as, samBlock->QVs, samBlock->QVs->qArray);
     else
         QVs_compress_lossless(as, samBlock->QVs->model, samBlock->QVs->qv_lines);
+
     return 1;
 }
 
@@ -275,6 +277,7 @@ void* compress(void *thread_info){
     
     while (compress_line(as, samBlock, info.funmapped, info.lossiness)) {
         ++lineCtr;
+        //printf("[cbc] compressed %zu lines\n", lineCtr);
         if (lineCtr % 1000000 == 0) {
           printf("[cbc] compressed %zu lines\n", lineCtr);
         }
